@@ -1,0 +1,20 @@
+name: Machine Info
+
+# 仅支持手动触发（workflow_dispatch），避免 push 时自动运行
+on:
+  workflow_dispatch:
+
+# 最小权限：只读仓库内容
+permissions:
+  contents: read
+
+jobs:
+  print-info:
+    name: 打印机器信息
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 执行脚本
+        run: python3 scripts/machine_info.py
